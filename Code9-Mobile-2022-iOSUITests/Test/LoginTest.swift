@@ -27,6 +27,6 @@ class LoginTest : BaseTest {
         loginPage.setUserName(text: "1")
         loginPage.setPassword(text: "2")
         loginPage.clickOnLoginButton()
-        loginPage.assertInvalidCredentials()        
+        loginPage.assertInvalidCredentials()
     }
 }

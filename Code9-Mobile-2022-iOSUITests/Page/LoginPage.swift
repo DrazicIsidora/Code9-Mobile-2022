@@ -12,11 +12,11 @@ class LoginPage: BasePage {
     
     // UserName input field
     private func getUserNameInputField() -> XCUIElement {
-        return getApp().textFields["Type your Username."]
+        return getApp().textFields["userNameTextFieldIdentifier"]
     }
     // Password input field
     private func getPasswordInputField() -> XCUIElement {
-        return getApp().secureTextFields["Type your Password."]
+        return getApp().secureTextFields["passwordTextFieldIdentifier"]
     }
     // UserName error popup
     private func getWrongCredentialsAlert() -> XCUIElement {
@@ -24,7 +24,7 @@ class LoginPage: BasePage {
     }
     
     private func getLoginButton() -> XCUIElement {
-        return getApp().buttons["Login"]
+        return getApp().buttons["loginButtonIdentifier"]
 
     }
     
