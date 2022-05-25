@@ -12,7 +12,7 @@ class LoginPage: BasePage {
     
     // UserName input field
     private func getUserNameInputField() -> XCUIElement {
-        return getApp().textFields["userNameTextFieldIdentifier"]
+        return getApp().textFields[Constants.ET_USERNAME_ID]
     }
     // Password input field
     private func getPasswordInputField() -> XCUIElement {
