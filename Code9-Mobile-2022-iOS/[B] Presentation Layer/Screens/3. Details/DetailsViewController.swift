@@ -28,14 +28,14 @@ class DetailsViewController: UIViewController {
         return imageView
     }()
     
-    lazy var nekiButton: UIButton = {
+    lazy var backNavigationButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemBlue
         button.setTitle("Back", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 25)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 20
-        button.accessibilityIdentifier = "nekiButtonIdentifier"
+        button.accessibilityIdentifier = "backNavigationButtonIdentifier"
         return button
     }()
     
@@ -73,12 +73,12 @@ class DetailsViewController: UIViewController {
         
         name.text = client?.name
         
-        // 3. nekiButton
-        view.addSubview(nekiButton)
-        nekiButton.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 20).isActive = true
-        nekiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nekiButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        nekiButton.addTarget(self, action:#selector(tapNekiButton), for: .touchUpInside)
+        // 3. backNavigationButton
+        view.addSubview(backNavigationButton)
+        backNavigationButton.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 20).isActive = true
+        backNavigationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        backNavigationButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        backNavigationButton.addTarget(self, action:#selector(tapBackNavigationButton), for: .touchUpInside)
     }
     
     private func setProfilePicture() {
@@ -98,12 +98,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    @objc func tapNekiButton() {
-        if client?.name == "Robyn Tucker" {
-            let vc = LoginViewController()
-            UIApplication.shared.windows.first?.rootViewController = vc
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
+    @objc func tapBackNavigationButton() {
+        dismiss(animated: true, completion: nil)
     }
 }
