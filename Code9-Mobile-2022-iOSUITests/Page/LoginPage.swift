@@ -10,43 +10,34 @@ import XCTest
 
 class LoginPage: BasePage {
     
-    // UserName input field
-    private func getUserNameInputField() -> XCUIElement {
-        return getApp().textFields[Constants.ET_USERNAME_ID]
-    }
-    // Password input field
-    private func getPasswordInputField() -> XCUIElement {
-        return getApp().secureTextFields["passwordTextFieldIdentifier"]
-    }
-    // UserName error popup
-    private func getWrongCredentialsAlert() -> XCUIElement {
-        return getApp().alerts["Wrong Username"]
-    }
-    
-    private func getLoginButton() -> XCUIElement {
-        return getApp().buttons["loginButtonIdentifier"]
 
+    // Locate UserName error popup
+    private func getWrongUsernameAlert() -> XCUIElement {
+        return getApp().alerts[Constants.TF_WARNING_USERNAME_POPUP_ID]
     }
     
-        
-    func setUserName(text: String){
-        
-        getUserNameInputField().tap()
-        getUserNameInputField().typeText(text)
+    // Locate Password error popup
+    private func getWrongPasswordAlert() -> XCUIElement {
+        return getApp().alerts[Constants.TF_WARNING_PASSWORD_POPUP_ID]
     }
     
-    func setPassword(text : String){
-        
-        getPasswordInputField().tap()
-        getPasswordInputField().typeText(text)
+    // Locate Master title
+    private func getMainTitle() -> XCUIElement {
+        return  getApp().navigationBars[Constants.MAIN_TITLE_ID]
     }
     
-    func clickOnLoginButton() {
-        getLoginButton().tap()
+    // Assert that Username error popup is dispalyed
+    func assertInvalidUsername(){
+        XCTAssert(getWrongUsernameAlert().exists)
     }
     
-    func assertInvalidCredentials(){
-        XCTAssert(getWrongCredentialsAlert().exists)
+    // Assert that Password error popup is dispalyed
+    func assertInvalidPassword(){
+        XCTAssert(getWrongPasswordAlert().exists)
     }
     
+    // Assert that Master title is displayed
+    func assertMainScreenTitle(){
+        XCTAssert(getMainTitle().exists)
+    }
 }

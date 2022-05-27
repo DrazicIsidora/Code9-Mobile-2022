@@ -15,18 +15,78 @@ class LoginTest : BaseTest {
         try super.setUpWithError()
     }
     
-    func testEnterUserName() {
-        loginPage.setUserName(text: "Isidora")
-    }
-    
-    func testEnterPassword() {
-        loginPage.setPassword(text: "x")
+    func testUsernmeLength() {
+        loginPage.setUserName(text: "Code9")
+        loginPage.setPassword(text: "MobileTesting9!")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidUsername()
     }
     
     func testInvalidCredentials() {
-        loginPage.setUserName(text: "1")
-        loginPage.setPassword(text: "2")
+        loginPage.setUserName(text: "Code9")
+        loginPage.setPassword(text: "Testing")
+        loginPage.clickOnLogo()
         loginPage.clickOnLoginButton()
-        loginPage.assertInvalidCredentials()
+        loginPage.assertInvalidUsername()
+    }
+    
+    func testLoginWithoutUsername() {
+        loginPage.setPassword(text: "MobileTesting9!")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidUsername()
+    }
+    
+    func testLoginWithoutPassword() {
+        loginPage.setUserName(text: "Code9workshop")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidPassword()
+    }
+    
+    func testLoginWithEmptyLoginForm() {
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidUsername()
+    }
+    
+    func testPasswordWithoutUpercase() {
+        loginPage.setUserName(text: "Code9workshop")
+        loginPage.setPassword(text: "mobiletesing9!")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidPassword()
+    }
+    
+    func testPasswordWithoutSpecialCharacters() {
+        loginPage.setUserName(text: "Code9workshop")
+        loginPage.setPassword(text: "MobileTesting9")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidPassword()
+    }
+    
+    func testPasswordWithoutNumbers() {
+        loginPage.setUserName(text: "Code9workshop")
+        loginPage.setPassword(text: "MobileTesting!")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidPassword()
+    }
+    
+    func testPasswordLength() {
+        loginPage.setUserName(text: "Code9workshop")
+        loginPage.setPassword(text: "Mobile9!")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertInvalidPassword()
+    }
+    
+    func testValidCredentials() {
+        loginPage.setUserName(text: "Code9workshop")
+        loginPage.setPassword(text: "MobileTesting9!")
+        loginPage.clickOnLogo()
+        loginPage.clickOnLoginButton()
+        loginPage.assertMainScreenTitle()
     }
 }

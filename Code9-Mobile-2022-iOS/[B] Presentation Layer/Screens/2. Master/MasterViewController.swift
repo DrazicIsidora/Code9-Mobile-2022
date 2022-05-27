@@ -126,7 +126,7 @@ extension MasterViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = clients[indexPath.row].name
         cell.detailTextLabel?.text = clients[indexPath.row].email
         cell.accessoryType = .disclosureIndicator
-        cell.accessibilityIdentifier = "clientTableViewCellId_\(indexPath.row)"
+        cell.accessibilityIdentifier = "clientTableViewCellId_\(indexPath.row)_\(clients[indexPath.row].name)_\(clients[indexPath.row].email)"
         
         return cell
     }
